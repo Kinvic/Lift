@@ -1,4 +1,4 @@
-package main;
+package elevator_system;
 
 import java.util.Collections;
 import java.util.Iterator;

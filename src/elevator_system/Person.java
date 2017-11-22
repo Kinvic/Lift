@@ -1,4 +1,4 @@
-package main;
+package elevator_system;
 
 public class Person {
     private int currentFloor;

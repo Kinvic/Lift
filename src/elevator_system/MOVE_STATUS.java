@@ -1,4 +1,4 @@
-package main;
+package elevator_system;
 
 public enum MOVE_STATUS{
     UP,
