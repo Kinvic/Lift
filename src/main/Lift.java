@@ -1,18 +1,17 @@
 package main;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 public class Lift{
     private int currentFloor;
     private int finishFloor;
     private MOVE_STATUS status;
-    public int priority;
+    private int priority;
+    final static int maxSlots = 5;
+    private int busySlots;
 
-    public Lift(int currentFloor, int finishFloor){
+    public Lift(int currentFloor, int finishFloor, int busySlots){
         this.currentFloor = currentFloor;
         this.finishFloor = finishFloor;
+        this.busySlots = busySlots;
         status = getStatus();
     }
 
@@ -32,8 +31,20 @@ public class Lift{
         this.finishFloor = finishFloor;
     }
 
+    public int getPriority(){
+        return priority;
+    }
+
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    public int getBusySlots() {
+        return busySlots;
+    }
+
+    public void setBusySlots(int busySlots) {
+        this.busySlots = busySlots;
     }
 
     public MOVE_STATUS getStatus(){
@@ -53,49 +64,7 @@ public class Lift{
         this.status = status;
     }
 
-    private int distance(int userFloor){
-        return Math.abs(currentFloor - userFloor);
-    }
-
-    public static Lift betterLift(List<Lift> list,int userFloor, MOVE_STATUS userStatus){
-        for(Lift lift : list){
-            lift.getPriority(userFloor, userStatus);
-        }
-        Collections.sort(list, new Comparator<Lift>() {
-            @Override
-            public int compare(Lift o1, Lift o2) {
-                if(o1.priority == o2.priority){
-                    return o1.distance(userFloor) - o2.distance(userFloor);
-                }
-                else {
-                    return o2.priority - o1.priority;
-                }
-            }
-        });
-        return list.get(0);
-    }
-
-    private int getPriority(int userFloor, MOVE_STATUS userStatus){
-        if(getStatus().equals(MOVE_STATUS.IDLE) && userFloor==currentFloor){
-            priority=2;
-        }
-        else if(getStatus().equals(userStatus)){
-            if(getStatus().equals(MOVE_STATUS.UP) && currentFloor < userFloor) {
-                priority=1;
-            }
-            else if(getStatus().equals(MOVE_STATUS.DOWN) && currentFloor > userFloor){
-                priority=1;
-            }
-            else{
-                priority=-1;
-            }
-        }
-        else if(getStatus().equals(MOVE_STATUS.IDLE)){
-            priority=0;
-        }
-        else{
-            priority=-1;
-        }
-        return priority;
+    public int getDistance(int userFloor){
+        return Math.abs(getCurrentFloor() - userFloor);
     }
 }
