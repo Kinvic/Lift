@@ -1,11 +1,11 @@
-package elevator_system;
+package elevator;
 
 public class Lift{
     private int currentFloor;
     private int finishFloor;
     private MOVE_STATUS status;
     private int priority;
-    final static int maxSlots = 5;
+    public static final int MAX_SLOTS = 5;
     private int busySlots;
 
     public Lift(int currentFloor, int finishFloor, int busySlots){

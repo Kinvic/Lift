@@ -1,7 +1,7 @@
-package elevator_system;
+package elevator;
 
 public enum MOVE_STATUS{
     UP,
     IDLE,
-    DOWN;
+    DOWN
 }

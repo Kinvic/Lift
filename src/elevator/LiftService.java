@@ -1,4 +1,4 @@
-package elevator_system;
+package elevator;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -16,7 +16,7 @@ public class LiftService {
 
         while(iterator.hasNext()){
 
-            if(iterator.next().getBusySlots() >= Lift.maxSlots){
+            if(iterator.next().getBusySlots() >= Lift.MAX_SLOTS){
                 iterator.remove();
             }
         }
@@ -39,7 +39,7 @@ public class LiftService {
         return list.get(0);
     }
 
-    private int calcPriority(Person person){
+    private void calcPriority(Person person){
             if(lift.getStatus().equals(MOVE_STATUS.IDLE) && person.getCurrentFloor() == lift.getCurrentFloor()){
                 lift.setPriority(2);
             }
@@ -60,6 +60,5 @@ public class LiftService {
             else{
                 lift.setPriority(-1);
             }
-        return lift.getPriority();
     }
 }

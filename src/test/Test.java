@@ -3,9 +3,9 @@ package test;
 import com.tngtech.java.junit.dataprovider.DataProvider;
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 import com.tngtech.java.junit.dataprovider.UseDataProvider;
-import elevator_system.Lift;
-import elevator_system.LiftService;
-import elevator_system.Person;
+import elevator.Lift;
+import elevator.LiftService;
+import elevator.Person;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
